@@ -52,25 +52,32 @@ class SurveyAdmin {
     
     public function render_tracking_page() {
         global $wpdb;
-
+    
         $votes_table = $wpdb->prefix . 'dynamic_survey_votes';
         $surveys_table = $wpdb->prefix . 'dynamic_surveys';
         $options_table = $wpdb->prefix . 'dynamic_survey_options';
-
+        $users_table = $wpdb->prefix . 'users';
+    
+        // Fetch votes along with survey question, voted option, and user info
         $votes = $wpdb->get_results(
             "SELECT 
                 v.survey_id, 
-                s.question, 
-                o.option_text, 
-                COUNT(v.option_id) AS vote_count
+                s.question AS survey_question, 
+                o.option_text AS voted_option, 
+                u.display_name AS user_name, 
+                v.vote_time 
              FROM $votes_table v
              JOIN $surveys_table s ON v.survey_id = s.id
              JOIN $options_table o ON v.option_id = o.id
-             GROUP BY v.survey_id, v.option_id"
+             LEFT JOIN $users_table u ON v.user_id = u.ID
+             ORDER BY v.vote_time DESC"
         );
-
+    
+        // Include the tracking page template
         require_once DYNAMIC_SURVEY_PATH . 'templates/admin-tracking-page.php';
     }
+    
+
 
     public function handle_create_survey() {
         if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'create_survey_nonce' ) ) {

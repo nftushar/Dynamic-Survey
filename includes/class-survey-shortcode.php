@@ -108,10 +108,10 @@ class SurveyShortcode {
         wp_enqueue_script( 'dynamic-survey', plugins_url( 'assets/js/survey.js', DYNAMIC_SURVEY_PATH ), [ 'jquery' ], '1.0', true );
         
         // Properly localize the script
-        wp_localize_script( 'dynamic-survey', 'surveyAjax', array(
+        wp_localize_script( 'dynamic-survey', 'surveyAjax', [
             'ajax_url' => admin_url( 'admin-ajax.php' ),
-            'nonce'    => wp_create_nonce( 'survey_nonce' ), // Adding a nonce for security
-        ) );
+            'nonce'    => wp_create_nonce( 'survey_nonce' ),  // Adding a nonce for security
+        ]);
     
         // Enqueue Chart.js
         wp_enqueue_script( 'chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', [], null, true );

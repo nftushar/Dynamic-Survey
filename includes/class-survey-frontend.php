@@ -56,7 +56,7 @@ class SurveyFrontend {
                     </label><br>
                 <?php endforeach; ?>
                 <input type="hidden" name="nonce" value="<?php echo esc_attr( $nonce ); ?>" />
-                <button type="submit">Submit</button>
+                <button type="submit">rr Submit</button>
             </form>
             <div id="survey-message" style="display: none;"></div>
             <div id="survey-results" style="display: none;">
@@ -188,12 +188,16 @@ class SurveyFrontend {
  
     public function enqueue_chartjs() {
         wp_enqueue_script( 'chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', [], '3.8.0', true );
-        wp_enqueue_script( 'dynamic-survey', plugin_dir_url( __DIR__ ) . 'assets/js/dynamic-survey.js', ['jquery'], null, true );
+        wp_enqueue_script( 'dynamic-survey', plugin_dir_url( __DIR__ ) . 'assets/js/dynamic-survey.js', ['jquery'], null, true ); 
     
-  
-        wp_localize_script( 'dynamic-survey', 'ajaxurl', array(
-            'ajax_url' => admin_url( 'admin-ajax.php' )
-        ) );
+        // Pass AJAX URL to JavaScript
+       // wp_localize_script( 'dynamic-survey', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
+
+       wp_localize_script( 'dynamic-survey', 'surveyData', array(
+        'ajax_url' => admin_url( 'admin-ajax.php' ),
+        'nonce'    => wp_create_nonce( 'survey_nonce' )  // Add a nonce for security
+      ) );
+    
         
     }
     

@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
         }
 
         $.ajax({
-            url: ajaxurl, // Ensure `ajaxurl` is defined globally (for logged-in users)
+            url: surveyData.ajax_url,  // Use 'surveyData.ajax_url' here
             type: 'POST',
             dataType: 'json',
             data: {
@@ -64,4 +64,3 @@ jQuery(document).ready(function ($) {
         });
     });
 });
-

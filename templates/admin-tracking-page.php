@@ -1,6 +1,6 @@
 <div class="wrap">
     <h1>Survey Voting Tracking</h1>
-
+    <h2>Form</h2>
     <?php 
     global $wpdb;
 
@@ -36,5 +36,10 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <!-- Export to CSV button -->
+        <form method="post" action="">
+            <?php wp_nonce_field( 'export_survey_nonce' ); ?>
+            <input type="submit" name="export_survey_results" value="Export to CSV" class="button-primary" />
+        </form>
     <?php endif; ?>
 </div>

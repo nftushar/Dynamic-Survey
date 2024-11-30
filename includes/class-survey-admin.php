@@ -53,6 +53,7 @@ class SurveyAdmin {
     public function render_tracking_page() {
         global $wpdb;
     
+        // Table names
         $votes_table = $wpdb->prefix . 'dynamic_survey_votes';
         $surveys_table = $wpdb->prefix . 'dynamic_surveys';
         $options_table = $wpdb->prefix . 'dynamic_survey_options';
@@ -65,17 +66,22 @@ class SurveyAdmin {
                 s.question AS survey_question, 
                 o.option_text AS voted_option, 
                 u.display_name AS user_name, 
+                v.user_ip, 
                 v.vote_time 
-             FROM $votes_table v
-             JOIN $surveys_table s ON v.survey_id = s.id
-             JOIN $options_table o ON v.option_id = o.id
-             LEFT JOIN $users_table u ON v.user_id = u.ID
-             ORDER BY v.vote_time DESC"
+            FROM {$wpdb->prefix}dynamic_survey_votes v
+            JOIN {$wpdb->prefix}dynamic_surveys s ON v.survey_id = s.id
+            JOIN {$wpdb->prefix}dynamic_survey_options o ON v.option_id = o.id
+            LEFT JOIN {$wpdb->users} u ON v.user_id = u.ID
+            ORDER BY v.vote_time DESC"
         );
+    
+        // Log the votes data for debugging (optional)
+        error_log('Survey Votes: ' . print_r($votes, true));
     
         // Include the tracking page template
         require_once DYNAMIC_SURVEY_PATH . 'templates/admin-tracking-page.php';
     }
+    
     
 
 

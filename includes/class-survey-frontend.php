@@ -188,7 +188,8 @@ class SurveyFrontend {
  
     public function enqueue_chartjs() {
         wp_enqueue_script( 'chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', [], '3.8.0', true );
-        wp_enqueue_script( 'dynamic-survey', plugin_dir_url( __DIR__ ) . 'assets/js/dynamic-survey.js', ['jquery'], null, true ); 
+        wp_enqueue_script( 'dynamic-survey', plugin_dir_url( __DIR__ ) . 'assets/js/dynamic-survey.js', ['jquery'], null, true );
+        wp_enqueue_script( 'dynamic-survey', plugin_dir_url( __FILE__ ) . 'js/dynamic-survey.js', array( 'jquery' ), null, true );
     
         // Pass AJAX URL to JavaScript
        // wp_localize_script( 'dynamic-survey', 'ajaxurl', admin_url( 'admin-ajax.php' ) );

@@ -1,6 +1,6 @@
 <div class="wrap">
     <h1>Dynamic Survey</h1>
-
+    <p>To display a survey on any post, page, or widget, simply insert the shortcode [dynamic_survey id="X"] (replace X with the Survey ID).</p>
     <h2>Create a New Survey</h2>
     <form method="POST" action="<?php echo admin_url( 'admin-post.php' ); ?>">
         <?php wp_nonce_field( 'create_survey_nonce' ); ?>
@@ -36,6 +36,7 @@
     <hr>
 
     <h2>All Surveys</h2>
+   
     <table class="wp-list-table widefat fixed striped">
         <thead>
             <tr>

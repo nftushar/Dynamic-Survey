@@ -78,15 +78,14 @@ public function export_survey_results_to_csv() {
         $output = fopen( 'php://output', 'w' );
 
         // Write the CSV header row
-        fputcsv( $output, [ 'Survey Question', 'User Name', 'Vote Time', 'User IP' ] );
+        fputcsv( $output, [ 'Survey Question', 'User Name', 'Vote Time',] );
 
         // Write the data rows
         foreach ( $votes as $vote ) {
             fputcsv( $output, [
                 $vote->survey_question,
                 $vote->user_name,
-                $vote->vote_time,
-                $vote->user_ip,
+                $vote->vote_time, 
             ] );
         }
 

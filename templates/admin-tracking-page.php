@@ -15,7 +15,7 @@
                     <th>Survey</th>
                     <th>Voted Option</th>
                     <th>User</th>
-                    <th>User IP</th>
+                     
                     <th>Vote Time</th>
                 </tr>
             </thead>
@@ -26,8 +26,7 @@
                     <tr>
                         <td><?php echo esc_html( $vote->survey_question ); ?></td>
                         <td><?php echo esc_html( $vote->voted_option ); ?></td>
-                        <td><?php echo esc_html( $vote->user_name ?? 'Guest' ); ?></td>
-                        <td><?php echo esc_html( $vote->user_ip ); ?></td>  <!-- Displaying User IP -->
+                        <td><?php echo esc_html( $vote->user_name ?? 'Guest' ); ?></td> 
                         <td><?php echo esc_html( $vote->vote_time ); ?></td>
                     </tr>
                 <?php endforeach; ?>

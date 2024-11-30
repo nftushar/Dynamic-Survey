@@ -11,8 +11,8 @@ add_action( 'wp_enqueue_scripts', function() {
     wp_enqueue_script( 'dynamic-survey-js', DYNAMIC_SURVEY_URL . 'js/survey-frontend.js', [ 'jquery', 'chart-js' ], null, true );
 
     // Localize script to handle AJAX URL and nonce
-    wp_localize_script( 'dynamic-survey-js', 'DynamicSurvey', [
+    wp_localize_script( 'dynamic-survey-js', 'DynamicSurvey', array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
         'nonce'    => wp_create_nonce( 'dynamic_survey_vote_nonce' ),
-    ]);
+    ) );
 });

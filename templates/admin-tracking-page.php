@@ -1,6 +1,5 @@
 <div class="wrap">
-    <h1>Survey Voting Tracking</h1>
-    <h2>Form</h2>
+    <h1>Survey Voting Tracking</h1> 
     <?php 
     global $wpdb;
 

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Dynamic Survey
  * Description: A plugin to create dynamic surveys and display results with charts.
- * Version: 1.0.2
+ * Version: 2.0.3
  * Author: Your Name
  * Text Domain: dynamic-survey
  */

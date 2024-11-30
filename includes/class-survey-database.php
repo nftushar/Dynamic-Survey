@@ -11,13 +11,13 @@ class SurveyDatabase {
 
         // Table for storing surveys
         $table_name_surveys = $wpdb->prefix . 'dynamic_surveys';
-        $sql = "
-            CREATE TABLE $table_name_surveys (
+        $sql = " CREATE TABLE $table_name_surveys (
                 id BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 question VARCHAR(255) NOT NULL,
+                status VARCHAR(50) DEFAULT 'open', -- Add the status column
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-            ) $charset_collate;
-        ";
+            ) $charset_collate;";
+            
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
         dbDelta( $sql );
 
